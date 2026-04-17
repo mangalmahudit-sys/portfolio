@@ -431,7 +431,7 @@ const Hero = () => {
                UI/UX Product Designer
                </p>
                <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.28em] text-accent">
-                 Ahmedabad Based
+                 mumbai Based
                </span>
              </div>
              <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] uppercase font-display font-bold tracking-tighter">
