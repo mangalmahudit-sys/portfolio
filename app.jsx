@@ -159,13 +159,13 @@ const SerpentSegment = ({ leaderX, leaderY, color, size, current, total }) => {
         opacity={opacity}
       />
       {current < total && (
-        <SerpentSegment 
-          leaderX={x} 
-          leaderY={y} 
-          color={color} 
-          size={size} 
-          current={current + 1} 
-          total={total} 
+        <SerpentSegment
+          leaderX={x}
+          leaderY={y}
+          color={color}
+          size={size}
+          current={current + 1}
+          total={total}
         />
       )}
     </>
@@ -176,13 +176,13 @@ const FluidSerpent = ({ color, segments = 20, size = 6 }) => {
   const { mouseX, mouseY } = useContext(MouseContext);
   return (
     <g className="pointer-events-none">
-      <SerpentSegment 
-        leaderX={mouseX} 
-        leaderY={mouseY} 
-        color={color} 
-        size={size} 
-        current={0} 
-        total={segments} 
+      <SerpentSegment
+        leaderX={mouseX}
+        leaderY={mouseY}
+        color={color}
+        size={size}
+        current={0}
+        total={segments}
       />
     </g>
   );
@@ -194,15 +194,15 @@ const InteractiveGrid = () => {
   const rotateY = useTransform(mouseX, [0, 1600], [-4, 4]);
 
   return (
-    <motion.div 
+    <motion.div
       className="absolute inset-0 z-0 opacity-20"
-      style={{ 
+      style={{
         perspective: "1000px",
         rotateX,
         rotateY
       }}
     >
-      <div 
+      <div
         className="h-full w-full"
         style={{
           backgroundImage: `
@@ -238,21 +238,21 @@ const Navbar = () => {
   return (
     <nav className="fixed w-full z-50 top-0 left-0 px-4 py-4 md:px-8 md:py-6 text-white">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between rounded-full border border-white/10 bg-black/25 px-4 py-3 backdrop-blur-xl md:px-6 md:py-4 shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
-      <div className="text-xl font-display font-bold tracking-tighter uppercase">
-        <span className="block leading-none">TAHER</span>
-        <span className="block text-graytext leading-none">MANGAL MAHUDI</span>
-      </div>
-      <div className="hidden md:flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold tracking-[0.25em] uppercase">
-        <a href="#work" className="hover-target rounded-full px-4 py-2 text-white/85 transition-colors duration-300 hover:bg-white/8 hover:text-accent">
-          Selected Work
+        <div className="text-xl font-display font-bold tracking-tighter uppercase">
+          <span className="block leading-none">TAHER</span>
+          <span className="block text-graytext leading-none">MANGAL MAHUDI</span>
+        </div>
+        <div className="hidden md:flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold tracking-[0.25em] uppercase">
+          <a href="#work" className="hover-target rounded-full px-4 py-2 text-white/85 transition-colors duration-300 hover:bg-white/8 hover:text-accent">
+            Selected Work
+          </a>
+          <a href="#about" className="hover-target rounded-full px-4 py-2 text-white/85 transition-colors duration-300 hover:bg-white/8 hover:text-accent">
+            Ethos
+          </a>
+        </div>
+        <a href="#contact" className="hover-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.25em] font-semibold hover:border-accent hover:bg-accent hover:text-black transition-colors">
+          Initiate <br /> Project
         </a>
-        <a href="#about" className="hover-target rounded-full px-4 py-2 text-white/85 transition-colors duration-300 hover:bg-white/8 hover:text-accent">
-          Ethos
-        </a>
-      </div>
-      <a href="#contact" className="hover-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.25em] font-semibold hover:border-accent hover:bg-accent hover:text-black transition-colors">
-        Initiate <br/> Project
-      </a>
       </div>
     </nav>
   )
@@ -272,11 +272,11 @@ const FloatingSculpture = () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    
+
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
-    
+
     rendererRef.current = renderer;
     sceneRef.current = scene;
 
@@ -286,7 +286,7 @@ const FloatingSculpture = () => {
       color: 0xffffff,
       metalness: 0.1,
       roughness: 0.02,
-      transmission: 1.0, 
+      transmission: 1.0,
       thickness: 2.5,
       ior: 1.7, // High refraction (diamond-like)
       dispersion: 5.0, // Chromatic aberration (rainbow effect)
@@ -294,7 +294,7 @@ const FloatingSculpture = () => {
       clearcoatRoughness: 0.02,
       opacity: 1,
     });
-    
+
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
     meshRef.current = mesh;
@@ -323,7 +323,7 @@ const FloatingSculpture = () => {
     let frameId;
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      
+
       if (meshRef.current) {
         // Subtle base rotation
         meshRef.current.rotation.x += 0.003;
@@ -332,14 +332,14 @@ const FloatingSculpture = () => {
         // Mouse influence
         const targetX = (mouseX.get() - window.innerWidth / 2) * 0.0005;
         const targetY = (mouseY.get() - window.innerHeight / 2) * 0.0005;
-        
+
         meshRef.current.rotation.x += (targetY - meshRef.current.rotation.x) * 0.05;
         meshRef.current.rotation.y += (targetX - meshRef.current.rotation.y) * 0.05;
-        
+
         // Float effect
         meshRef.current.position.y = Math.sin(Date.now() * 0.001) * 2;
       }
-      
+
       renderer.render(scene, camera);
     };
     animate();
@@ -365,8 +365,8 @@ const FloatingSculpture = () => {
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="absolute inset-0 z-0 pointer-events-none opacity-20 md:opacity-35"
       style={{ mixBlendMode: 'screen' }}
     />
@@ -379,14 +379,14 @@ const HeroSerpentField = () => {
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <InteractiveGrid />
       <FloatingSculpture />
-      
+
       {/* Ambient background glows */}
       <motion.div
         className="absolute -top-[18vh] left-[8vw] h-[34vw] w-[34vw] rounded-full bg-accent/15 blur-[110px]"
         animate={{ x: [0, 60, -20, 0], y: [0, 40, 90, 0], scale: [1, 1.15, 0.9, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
-      
+
       <svg
         viewBox="0 0 1600 900"
         className="absolute inset-0 h-full w-full opacity-60"
@@ -409,7 +409,7 @@ const Hero = () => {
 
   return (
     <section className="h-screen w-full relative flex items-center justify-center overflow-hidden">
-      <motion.div 
+      <motion.div
         style={{ y: y1, scale }}
         className="absolute inset-0 z-0"
       >
@@ -418,63 +418,63 @@ const Hero = () => {
 
       <div className="relative z-10 w-full px-6 md:px-12 flex flex-col justify-end h-full pb-24 max-w-[1600px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full gap-12">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="flex-1"
           >
-             <div className="mb-8 flex flex-wrap items-center gap-3">
-               <p className="text-accent text-xs font-mono uppercase tracking-[0.3em] flex items-center gap-4">
-               <span className="w-8 h-[1px] bg-accent inline-block"></span>
-               UI/UX Product Designer
-               </p>
-               <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.28em] text-accent">
-                 mumbai Based
-               </span>
-             </div>
-             <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] uppercase font-display font-bold tracking-tighter">
-               <div className="overflow-hidden">
-                 <motion.span 
-                   initial={{ y: "110%" }}
-                   animate={{ y: 0 }}
-                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                   className="block text-outline drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                 >
-                   Intuitive
-                 </motion.span>
-               </div>
-               <div className="overflow-hidden pl-[10vw]">
-                 <motion.span 
-                   initial={{ y: "110%" }}
-                   animate={{ y: 0 }}
-                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-                   className="block drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
-                 >
-                   Experiences
-                 </motion.span>
-               </div>
-               <div className="overflow-hidden pl-[5vw]">
-                 <motion.span 
-                   initial={{ opacity: 0, x: -30 }}
-                   animate={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 1, ease: "easeOut", delay: 1.1 }}
-                   className="block text-graytext italic font-serif lowercase tracking-normal text-[10vw] md:text-[7vw] drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
-                 >
-                   systematized.
-                 </motion.span>
-               </div>
-             </h1>
+            <div className="mb-8 flex flex-wrap items-center gap-3">
+              <p className="text-accent text-xs font-mono uppercase tracking-[0.3em] flex items-center gap-4">
+                <span className="w-8 h-[1px] bg-accent inline-block"></span>
+                UI/UX Product Designer
+              </p>
+              <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.28em] text-accent">
+                mumbai Based
+              </span>
+            </div>
+            <h1 className="text-[12vw] md:text-[8vw] leading-[0.9] uppercase font-display font-bold tracking-tighter">
+              <div className="overflow-hidden">
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                  className="block text-outline drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+                >
+                  Intuitive
+                </motion.span>
+              </div>
+              <div className="overflow-hidden pl-[10vw]">
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+                  className="block drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+                >
+                  Experiences
+                </motion.span>
+              </div>
+              <div className="overflow-hidden pl-[5vw]">
+                <motion.span
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: "easeOut", delay: 1.1 }}
+                  className="block text-graytext italic font-serif lowercase tracking-normal text-[10vw] md:text-[7vw] drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
+                >
+                  systematized.
+                </motion.span>
+              </div>
+            </h1>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
             className="hidden md:flex w-full md:w-[28rem] flex-col pl-0 md:pl-12 md:border-l border-white/10 items-start justify-end gap-6"
           >
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5, borderColor: "rgba(249, 93, 19, 0.4)" }}
               className="w-full rounded-[1.75rem] border border-white/10 bg-black/30 p-5 backdrop-blur-md transition-colors duration-500"
             >
@@ -483,7 +483,7 @@ const Hero = () => {
                   <p className="text-[10px] font-mono uppercase tracking-[0.35em] text-accent">Current Vibe</p>
                   <p className="mt-2 text-2xl font-display uppercase tracking-tight">Minimal, but not quiet.</p>
                 </div>
-                <motion.div 
+                <motion.div
                   animate={{ rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/5 text-accent"
@@ -504,10 +504,10 @@ const Hero = () => {
                 ))}
               </div>
             </motion.div>
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
               whileTap={{ scale: 0.95 }}
-              className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover-target group cursor-none transition-all duration-300" 
+              className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover-target group cursor-none transition-all duration-300"
               onClick={() => document.getElementById('work').scrollIntoView({ behavior: 'smooth' })}
             >
               <ArrowDownRight />
@@ -530,36 +530,36 @@ const ProjectGallery = ({ id, heading, subtitle, categoryNumber, projects }) => 
 
       <div className="relative w-full">
         {projects.map((proj, idx) => (
-           <div 
-             key={idx} 
-             className="sticky w-full mb-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-center group p-6 md:p-12 rounded-[2rem] border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.6)]"
-             style={{ 
-               top: `calc(15vh + ${idx * 40}px)`, 
-               backgroundColor: proj.bgColor,
-               zIndex: idx + 1 
-             }}
-           >
-             
-             {/* Info Block */}
-             <div className="md:col-span-4 z-10 flex flex-col items-start pr-0 md:pr-12">
-               <span className="text-accent text-xs font-mono mb-4 block">No. 0{idx + 1}</span>
-               <h3 className="text-4xl lg:text-5xl font-display uppercase tracking-tight mb-4">{proj.title}</h3>
-               <p className="text-xs uppercase tracking-widest text-graytext font-semibold mb-8">{proj.category}</p>
-               <a href={proj.link} target="_blank" className="hover-target text-sm border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all inline-block uppercase tracking-wider font-semibold">
-                 View Case
-               </a>
-             </div>
+          <div
+            key={idx}
+            className="sticky w-full mb-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-center group p-6 md:p-12 rounded-[2rem] border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.6)]"
+            style={{
+              top: `calc(15vh + ${idx * 40}px)`,
+              backgroundColor: proj.bgColor,
+              zIndex: idx + 1
+            }}
+          >
 
-             {/* Image Block */}
-             <div className="md:col-span-8 h-[40vh] md:h-[60vh] w-full overflow-hidden relative hover-target pointer-events-auto rounded-xl border border-white/10 bg-[#0a0a0a] group-hover:border-white/30 transition-all duration-700">
-                <img 
-                  src={proj.img} 
-                  alt={proj.title} 
-                  className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
-                />
-             </div>
+            {/* Info Block */}
+            <div className="md:col-span-4 z-10 flex flex-col items-start pr-0 md:pr-12">
+              <span className="text-accent text-xs font-mono mb-4 block">No. 0{idx + 1}</span>
+              <h3 className="text-4xl lg:text-5xl font-display uppercase tracking-tight mb-4">{proj.title}</h3>
+              <p className="text-xs uppercase tracking-widest text-graytext font-semibold mb-8">{proj.category}</p>
+              <a href={proj.link} target="_blank" className="hover-target text-sm border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all inline-block uppercase tracking-wider font-semibold">
+                View Case
+              </a>
+            </div>
 
-           </div>
+            {/* Image Block */}
+            <div className="md:col-span-8 h-[40vh] md:h-[60vh] w-full overflow-hidden relative hover-target pointer-events-auto rounded-xl border border-white/10 bg-[#0a0a0a] group-hover:border-white/30 transition-all duration-700">
+              <img
+                src={proj.img}
+                alt={proj.title}
+                className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              />
+            </div>
+
+          </div>
         ))}
       </div>
     </section>
@@ -598,125 +598,125 @@ const SnakeTransition = () => {
   return (
     <section ref={sectionRef} className="relative h-[220vh] bg-[#050505]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden px-6 py-24 md:px-12 md:py-32">
-      <div className="absolute inset-0">
-        <div className="absolute left-[8%] top-[12%] h-40 w-40 rounded-full bg-accent/10 blur-[100px]" />
-        <div className="absolute right-[10%] top-[25%] h-48 w-48 rounded-full bg-white/6 blur-[120px]" />
-        <div className="absolute bottom-[8%] left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]" />
-      </div>
-
-      <div className="relative mx-auto grid max-w-[1600px] grid-cols-1 items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-        <motion.div className="max-w-xl" style={{ y: labelY, opacity: labelOpacity }}>
-          <p className="mb-6 flex items-center gap-4 text-xs font-mono uppercase tracking-[0.3em] text-accent">
-            <span className="inline-block h-[1px] w-8 bg-accent"></span>
-            Scroll Motion
-          </p>
-          <h2 className="text-5xl font-display uppercase tracking-tighter md:text-7xl">
-            Scroll and watch
-            <span className="block text-outline">it move.</span>
-          </h2>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-graytext md:text-base">
-            This section now scrubs with your scroll, so the snake trail reveals and the head shifts position as you move down the page.
-          </p>
-        </motion.div>
-
-        <div className="relative h-[65vh] min-h-[520px] overflow-hidden rounded-[2rem] border border-white/10 bg-[#090909]">
-          <svg viewBox="0 0 900 900" className="absolute inset-0 h-full w-full">
-            <defs>
-              <linearGradient id="snakeTransitionStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
-                <stop offset="45%" stopColor="rgba(249,93,19,0.95)" />
-                <stop offset="100%" stopColor="rgba(255,255,255,0.08)" />
-              </linearGradient>
-              <filter id="snakeTransitionGlow" x="-40%" y="-40%" width="180%" height="180%">
-                <feGaussianBlur stdDeviation="12" />
-              </filter>
-            </defs>
-
-            {[...Array(9)].map((_, i) => (
-              <line
-                key={`grid-v-${i}`}
-                x1={100 * i}
-                y1="0"
-                x2={100 * i}
-                y2="900"
-                stroke="rgba(255,255,255,0.05)"
-                strokeDasharray="4 14"
-              />
-            ))}
-            {[...Array(9)].map((_, i) => (
-              <line
-                key={`grid-h-${i}`}
-                x1="0"
-                y1={100 * i}
-                x2="900"
-                y2={100 * i}
-                stroke="rgba(255,255,255,0.04)"
-                strokeDasharray="4 14"
-              />
-            ))}
-
-            <path
-              id="snakeTransitionPath"
-              d="M 120 120 C 310 10, 575 90, 610 255 C 645 425, 260 410, 282 575 C 300 730, 660 680, 760 790"
-              fill="none"
-              stroke="rgba(255,255,255,0.08)"
-              strokeWidth="2"
-              strokeDasharray="10 18"
-              strokeLinecap="round"
-            />
-
-            <motion.path
-              d="M 120 120 C 310 10, 575 90, 610 255 C 645 425, 260 410, 282 575 C 300 730, 660 680, 760 790"
-              fill="none"
-              stroke="rgba(249,93,19,0.2)"
-              strokeWidth="18"
-              strokeLinecap="round"
-              filter="url(#snakeTransitionGlow)"
-              style={{ pathLength: progress, opacity: trailOpacity }}
-            />
-
-            <motion.path
-              d="M 120 120 C 310 10, 575 90, 610 255 C 645 425, 260 410, 282 575 C 300 730, 660 680, 760 790"
-              fill="none"
-              stroke="url(#snakeTransitionStroke)"
-              strokeWidth="5"
-              strokeLinecap="round"
-              strokeDasharray="620"
-              style={{ pathLength: progress, strokeDashoffset: trailDash, opacity: trailOpacity }}
-            />
-          </svg>
-
-          <motion.div
-            className="absolute h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-2xl"
-            style={{ left: headX, top: headY, scale: pulseScale }}
-          />
-
-          <motion.div
-            className="absolute -translate-x-1/2 -translate-y-1/2"
-            style={{ left: headX, top: headY, rotate: headRotate }}
-          >
-            <div className="relative">
-              <div className="h-10 w-10 rounded-full border border-white/20 bg-accent shadow-[0_0_35px_rgba(249,93,19,0.75)]" />
-              <div className="absolute left-[8px] top-[13px] h-[5px] w-[5px] rounded-full bg-black/80" />
-              <div className="absolute right-[8px] top-[13px] h-[5px] w-[5px] rounded-full bg-black/80" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="absolute left-6 top-6 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-[10px] font-mono uppercase tracking-[0.35em] text-white/65 backdrop-blur-md"
-            style={{ opacity: labelOpacity }}
-          >
-            Scroll Trace
-          </motion.div>
-
-          <motion.div
-            className="absolute bottom-6 right-6 flex items-center gap-3 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-[10px] font-mono uppercase tracking-[0.35em] text-accent backdrop-blur-md"
-          >
-            <span className="inline-block h-2 w-2 rounded-full bg-accent"></span>
-            Scroll Controlled
-          </motion.div>
+        <div className="absolute inset-0">
+          <div className="absolute left-[8%] top-[12%] h-40 w-40 rounded-full bg-accent/10 blur-[100px]" />
+          <div className="absolute right-[10%] top-[25%] h-48 w-48 rounded-full bg-white/6 blur-[120px]" />
+          <div className="absolute bottom-[8%] left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]" />
         </div>
-      </div>
+
+        <div className="relative mx-auto grid max-w-[1600px] grid-cols-1 items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <motion.div className="max-w-xl" style={{ y: labelY, opacity: labelOpacity }}>
+            <p className="mb-6 flex items-center gap-4 text-xs font-mono uppercase tracking-[0.3em] text-accent">
+              <span className="inline-block h-[1px] w-8 bg-accent"></span>
+              Scroll Motion
+            </p>
+            <h2 className="text-5xl font-display uppercase tracking-tighter md:text-7xl">
+              Scroll and watch
+              <span className="block text-outline">it move.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-graytext md:text-base">
+              This section now scrubs with your scroll, so the snake trail reveals and the head shifts position as you move down the page.
+            </p>
+          </motion.div>
+
+          <div className="relative h-[65vh] min-h-[520px] overflow-hidden rounded-[2rem] border border-white/10 bg-[#090909]">
+            <svg viewBox="0 0 900 900" className="absolute inset-0 h-full w-full">
+              <defs>
+                <linearGradient id="snakeTransitionStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
+                  <stop offset="45%" stopColor="rgba(249,93,19,0.95)" />
+                  <stop offset="100%" stopColor="rgba(255,255,255,0.08)" />
+                </linearGradient>
+                <filter id="snakeTransitionGlow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="12" />
+                </filter>
+              </defs>
+
+              {[...Array(9)].map((_, i) => (
+                <line
+                  key={`grid-v-${i}`}
+                  x1={100 * i}
+                  y1="0"
+                  x2={100 * i}
+                  y2="900"
+                  stroke="rgba(255,255,255,0.05)"
+                  strokeDasharray="4 14"
+                />
+              ))}
+              {[...Array(9)].map((_, i) => (
+                <line
+                  key={`grid-h-${i}`}
+                  x1="0"
+                  y1={100 * i}
+                  x2="900"
+                  y2={100 * i}
+                  stroke="rgba(255,255,255,0.04)"
+                  strokeDasharray="4 14"
+                />
+              ))}
+
+              <path
+                id="snakeTransitionPath"
+                d="M 120 120 C 310 10, 575 90, 610 255 C 645 425, 260 410, 282 575 C 300 730, 660 680, 760 790"
+                fill="none"
+                stroke="rgba(255,255,255,0.08)"
+                strokeWidth="2"
+                strokeDasharray="10 18"
+                strokeLinecap="round"
+              />
+
+              <motion.path
+                d="M 120 120 C 310 10, 575 90, 610 255 C 645 425, 260 410, 282 575 C 300 730, 660 680, 760 790"
+                fill="none"
+                stroke="rgba(249,93,19,0.2)"
+                strokeWidth="18"
+                strokeLinecap="round"
+                filter="url(#snakeTransitionGlow)"
+                style={{ pathLength: progress, opacity: trailOpacity }}
+              />
+
+              <motion.path
+                d="M 120 120 C 310 10, 575 90, 610 255 C 645 425, 260 410, 282 575 C 300 730, 660 680, 760 790"
+                fill="none"
+                stroke="url(#snakeTransitionStroke)"
+                strokeWidth="5"
+                strokeLinecap="round"
+                strokeDasharray="620"
+                style={{ pathLength: progress, strokeDashoffset: trailDash, opacity: trailOpacity }}
+              />
+            </svg>
+
+            <motion.div
+              className="absolute h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-2xl"
+              style={{ left: headX, top: headY, scale: pulseScale }}
+            />
+
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ left: headX, top: headY, rotate: headRotate }}
+            >
+              <div className="relative">
+                <div className="h-10 w-10 rounded-full border border-white/20 bg-accent shadow-[0_0_35px_rgba(249,93,19,0.75)]" />
+                <div className="absolute left-[8px] top-[13px] h-[5px] w-[5px] rounded-full bg-black/80" />
+                <div className="absolute right-[8px] top-[13px] h-[5px] w-[5px] rounded-full bg-black/80" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="absolute left-6 top-6 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-[10px] font-mono uppercase tracking-[0.35em] text-white/65 backdrop-blur-md"
+              style={{ opacity: labelOpacity }}
+            >
+              Scroll Trace
+            </motion.div>
+
+            <motion.div
+              className="absolute bottom-6 right-6 flex items-center gap-3 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-[10px] font-mono uppercase tracking-[0.35em] text-accent backdrop-blur-md"
+            >
+              <span className="inline-block h-2 w-2 rounded-full bg-accent"></span>
+              Scroll Controlled
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -733,12 +733,12 @@ const Ethos = () => {
   ];
   // Anchor (solid square) & control-handle points
   const anchors = [
-    { cx: 55,  cy: 490, main: true }, { cx: 255, cy: 375, main: true }, { cx: 385, cy: 285, main: true },
+    { cx: 55, cy: 490, main: true }, { cx: 255, cy: 375, main: true }, { cx: 385, cy: 285, main: true },
     { cx: 110, cy: 390, main: false }, { cx: 195, cy: 445, main: false },
     { cx: 305, cy: 315, main: false }, { cx: 345, cy: 355, main: false },
   ];
   const ctrlLines = [
-    { x1: 55,  y1: 490, x2: 110, y2: 390 },
+    { x1: 55, y1: 490, x2: 110, y2: 390 },
     { x1: 255, y1: 375, x2: 195, y2: 445 },
     { x1: 255, y1: 375, x2: 305, y2: 315 },
     { x1: 385, y1: 285, x2: 345, y2: 355 },
@@ -753,10 +753,10 @@ const Ethos = () => {
         {/* LEFT — Typographic Ethos */}
         <div className="lg:col-span-7">
           <p className="text-xs uppercase font-mono text-accent mb-8 tracking-[0.3em] flex items-center gap-4">
-             <span className="w-8 h-[1px] bg-accent inline-block"></span>Ethos & Core
+            <span className="w-8 h-[1px] bg-accent inline-block"></span>Ethos & Core
           </p>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight mb-8">
-            I don't just push pixels. <br/>
+            I don't just push pixels. <br />
             I architect <span className="text-outline">logic</span> & <span className="font-serif italic font-normal text-graytext lowercase">emotion.</span>
           </h2>
           <p className="text-lg md:text-xl text-graytext font-light leading-relaxed mb-16 max-w-2xl">
@@ -783,18 +783,18 @@ const Ethos = () => {
             <defs>
               {/* Figma-style dot grid */}
               <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="0.65" fill="#ffffff" fillOpacity="0.09"/>
+                <circle cx="1" cy="1" r="0.65" fill="#ffffff" fillOpacity="0.09" />
               </pattern>
               {/* Scan glow gradient */}
               <linearGradient id="scanGlowDesign" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#f95d13" stopOpacity="0"/>
-                <stop offset="50%" stopColor="#f95d13" stopOpacity="0.18"/>
-                <stop offset="100%" stopColor="#f95d13" stopOpacity="0"/>
+                <stop offset="0%" stopColor="#f95d13" stopOpacity="0" />
+                <stop offset="50%" stopColor="#f95d13" stopOpacity="0.18" />
+                <stop offset="100%" stopColor="#f95d13" stopOpacity="0" />
               </linearGradient>
             </defs>
 
             {/* ── BG: Dot grid ── */}
-            <rect width="400" height="600" fill="url(#dotgrid)"/>
+            <rect width="400" height="600" fill="url(#dotgrid)" />
 
             {/* ── LAYER 1: Layout column guides (4-col grid) ── */}
             {colGuides.map((x, i) => (
@@ -995,7 +995,7 @@ const Ethos = () => {
               animate={{ strokeOpacity: [0, 0.65, 0.65, 0] }}
               transition={{ duration: 3.5, delay: 2.5, repeat: Infinity, repeatDelay: 4 }}
             />
-            {[[25,56],[375,56],[25,281],[375,281]].map(([x,y], i) => (
+            {[[25, 56], [375, 56], [25, 281], [375, 281]].map(([x, y], i) => (
               <motion.rect key={`sh-${i}`} x={x - 4.5} y={y - 4.5} width="9" height="9"
                 fill="#f95d13" fillOpacity={0}
                 animate={{ fillOpacity: [0, 1, 1, 0] }}
@@ -1070,10 +1070,10 @@ const Skills = () => {
       skills: ["User Research", "Journey Mapping", "Personas", "Information Architecture", "Usability Testing"],
       icon: (
         <svg viewBox="0 0 60 60" fill="none" className="w-10 h-10">
-          <circle cx="30" cy="22" r="10" stroke="#f95d13" strokeWidth="1.5" strokeDasharray="3 4"/>
-          <path d="M12 50 C12 38 48 38 48 50" stroke="#f95d13" strokeWidth="1.5" strokeLinecap="round"/>
-          <circle cx="30" cy="22" r="4" fill="#f95d13" fillOpacity="0.4"/>
-          <line x1="30" y1="32" x2="30" y2="40" stroke="#f95d13" strokeWidth="1" strokeDasharray="2 2"/>
+          <circle cx="30" cy="22" r="10" stroke="#f95d13" strokeWidth="1.5" strokeDasharray="3 4" />
+          <path d="M12 50 C12 38 48 38 48 50" stroke="#f95d13" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="30" cy="22" r="4" fill="#f95d13" fillOpacity="0.4" />
+          <line x1="30" y1="32" x2="30" y2="40" stroke="#f95d13" strokeWidth="1" strokeDasharray="2 2" />
         </svg>
       ),
       desc: "Human-centered thinking that connects goals to outcomes.",
@@ -1086,12 +1086,12 @@ const Skills = () => {
       skills: ["Visual Hierarchy", "Component Systems", "Responsive Layout", "Micro-interactions", "Design Tokens"],
       icon: (
         <svg viewBox="0 0 60 60" fill="none" className="w-10 h-10">
-          <rect x="8" y="10" width="44" height="30" rx="4" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.6"/>
-          <rect x="14" y="16" width="20" height="12" rx="2" fill="#ffffff" fillOpacity="0.08" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.3"/>
-          <rect x="38" y="16" width="8" height="5" rx="1.5" fill="#f95d13" fillOpacity="0.6"/>
-          <rect x="38" y="24" width="8" height="4" rx="1.5" fill="#ffffff" fillOpacity="0.2"/>
-          <line x1="14" y1="34" x2="46" y2="34" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.2"/>
-          <rect x="22" y="40" width="16" height="6" rx="3" fill="#ffffff" fillOpacity="0.1" stroke="#ffffff" strokeWidth="0.6" strokeOpacity="0.3"/>
+          <rect x="8" y="10" width="44" height="30" rx="4" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.6" />
+          <rect x="14" y="16" width="20" height="12" rx="2" fill="#ffffff" fillOpacity="0.08" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.3" />
+          <rect x="38" y="16" width="8" height="5" rx="1.5" fill="#f95d13" fillOpacity="0.6" />
+          <rect x="38" y="24" width="8" height="4" rx="1.5" fill="#ffffff" fillOpacity="0.2" />
+          <line x1="14" y1="34" x2="46" y2="34" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.2" />
+          <rect x="22" y="40" width="16" height="6" rx="3" fill="#ffffff" fillOpacity="0.1" stroke="#ffffff" strokeWidth="0.6" strokeOpacity="0.3" />
         </svg>
       ),
       desc: "Pixel-precise interfaces built on systems, not chaos.",
@@ -1104,10 +1104,10 @@ const Skills = () => {
       skills: ["Brand Identity", "Typography", "Color Theory", "Visual Composition", "Motion Graphics"],
       icon: (
         <svg viewBox="0 0 60 60" fill="none" className="w-10 h-10">
-          <circle cx="20" cy="20" r="8" fill="#f97316" fillOpacity="0.25" stroke="#f97316" strokeWidth="1.2"/>
-          <circle cx="40" cy="20" r="8" fill="#ffffff" fillOpacity="0.1" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.4"/>
-          <circle cx="30" cy="36" r="8" fill="#f95d13" fillOpacity="0.2" stroke="#f95d13" strokeWidth="1"/>
-          <path d="M 28 12 A 8 8 0 0 1 32 12" stroke="#f97316" strokeWidth="1.5"/>
+          <circle cx="20" cy="20" r="8" fill="#f97316" fillOpacity="0.25" stroke="#f97316" strokeWidth="1.2" />
+          <circle cx="40" cy="20" r="8" fill="#ffffff" fillOpacity="0.1" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.4" />
+          <circle cx="30" cy="36" r="8" fill="#f95d13" fillOpacity="0.2" stroke="#f95d13" strokeWidth="1" />
+          <path d="M 28 12 A 8 8 0 0 1 32 12" stroke="#f97316" strokeWidth="1.5" />
         </svg>
       ),
       desc: "Bold visual language that speaks before words do.",
@@ -1120,11 +1120,11 @@ const Skills = () => {
       skills: ["Interactive Flows", "Animations", "Handoff Specs", "Design Systems", "A/B Testing"],
       icon: (
         <svg viewBox="0 0 60 60" fill="none" className="w-10 h-10">
-          <rect x="10" y="10" width="16" height="16" rx="3" stroke="#888" strokeWidth="1.2"/>
-          <rect x="34" y="10" width="16" height="16" rx="3" stroke="#888" strokeWidth="1.2"/>
-          <rect x="22" y="34" width="16" height="16" rx="3" stroke="#f95d13" strokeWidth="1.2"/>
-          <line x1="18" y1="26" x2="30" y2="34" stroke="#888" strokeWidth="0.8" strokeDasharray="2 2"/>
-          <line x1="42" y1="26" x2="30" y2="34" stroke="#888" strokeWidth="0.8" strokeDasharray="2 2"/>
+          <rect x="10" y="10" width="16" height="16" rx="3" stroke="#888" strokeWidth="1.2" />
+          <rect x="34" y="10" width="16" height="16" rx="3" stroke="#888" strokeWidth="1.2" />
+          <rect x="22" y="34" width="16" height="16" rx="3" stroke="#f95d13" strokeWidth="1.2" />
+          <line x1="18" y1="26" x2="30" y2="34" stroke="#888" strokeWidth="0.8" strokeDasharray="2 2" />
+          <line x1="42" y1="26" x2="30" y2="34" stroke="#888" strokeWidth="0.8" strokeDasharray="2 2" />
         </svg>
       ),
       desc: "From wireframe to living, breathing experience.",
@@ -1146,7 +1146,7 @@ const Skills = () => {
               <span className="w-8 h-[1px] bg-accent inline-block"></span>Capabilities
             </p>
             <h2 className="text-5xl md:text-7xl font-display uppercase tracking-tighter leading-none">
-              What I <span className="text-outline">Bring</span><br/>
+              What I <span className="text-outline">Bring</span><br />
               <span className="font-serif italic font-normal lowercase text-graytext text-4xl md:text-6xl">to the table.</span>
             </h2>
           </div>
@@ -1281,29 +1281,37 @@ const SoftwareStack = () => {
   const isInView = useInView(ref, { once: true, margin: "-8%" });
 
   const tools = [
-    { name: "Figma",         cat: "UI Design",        color: "#7C5CFC", sub: "#a78bfa", level: 95,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><circle cx="20" cy="8" r="7" fill="#7C5CFC" fillOpacity=".25" stroke="#7C5CFC" strokeWidth="1.5"/><circle cx="20" cy="20" r="7" fill="#F24E1E" fillOpacity=".2" stroke="#F24E1E" strokeWidth="1"/><circle cx="13" cy="32" r="7" fill="#7C5CFC" fillOpacity=".15" stroke="#7C5CFC" strokeWidth="1"/><circle cx="27" cy="32" r="7" fill="#0ACF83" fillOpacity=".15" stroke="#0ACF83" strokeWidth="1"/></svg>
+    {
+      name: "Figma", cat: "UI Design", color: "#7C5CFC", sub: "#a78bfa", level: 95,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><circle cx="20" cy="8" r="7" fill="#7C5CFC" fillOpacity=".25" stroke="#7C5CFC" strokeWidth="1.5" /><circle cx="20" cy="20" r="7" fill="#F24E1E" fillOpacity=".2" stroke="#F24E1E" strokeWidth="1" /><circle cx="13" cy="32" r="7" fill="#7C5CFC" fillOpacity=".15" stroke="#7C5CFC" strokeWidth="1" /><circle cx="27" cy="32" r="7" fill="#0ACF83" fillOpacity=".15" stroke="#0ACF83" strokeWidth="1" /></svg>
     },
-    { name: "Adobe XD",      cat: "Prototyping",      color: "#FF61F6", sub: "#f0abfc", level: 88,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#FF61F6" fillOpacity=".15" stroke="#FF61F6" strokeWidth="1.5"/><text x="8" y="26" fontSize="14" fontWeight="bold" fill="#FF61F6" fillOpacity=".9" fontFamily="serif">Xd</text></svg>
+    {
+      name: "Adobe XD", cat: "Prototyping", color: "#FF61F6", sub: "#f0abfc", level: 88,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#FF61F6" fillOpacity=".15" stroke="#FF61F6" strokeWidth="1.5" /><text x="8" y="26" fontSize="14" fontWeight="bold" fill="#FF61F6" fillOpacity=".9" fontFamily="serif">Xd</text></svg>
     },
-    { name: "Photoshop",     cat: "Graphics",         color: "#31A8FF", sub: "#7dd3fc", level: 85,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#31A8FF" fillOpacity=".15" stroke="#31A8FF" strokeWidth="1.5"/><circle cx="16" cy="20" r="6" fill="#31A8FF" fillOpacity=".3" stroke="#31A8FF" strokeWidth="1"/><path d="M22 14 Q32 14 32 20 Q32 26 22 26" stroke="#31A8FF" strokeWidth="1.5" fill="none"/></svg>
+    {
+      name: "Photoshop", cat: "Graphics", color: "#31A8FF", sub: "#7dd3fc", level: 85,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#31A8FF" fillOpacity=".15" stroke="#31A8FF" strokeWidth="1.5" /><circle cx="16" cy="20" r="6" fill="#31A8FF" fillOpacity=".3" stroke="#31A8FF" strokeWidth="1" /><path d="M22 14 Q32 14 32 20 Q32 26 22 26" stroke="#31A8FF" strokeWidth="1.5" fill="none" /></svg>
     },
-    { name: "Illustrator",   cat: "Graphics",         color: "#FF9A00", sub: "#fdba74", level: 82,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#FF9A00" fillOpacity=".15" stroke="#FF9A00" strokeWidth="1.5"/><path d="M12 28 L20 10 L28 28" stroke="#FF9A00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><line x1="14" y1="23" x2="26" y2="23" stroke="#FF9A00" strokeWidth="1.5"/></svg>
+    {
+      name: "Illustrator", cat: "Graphics", color: "#FF9A00", sub: "#fdba74", level: 82,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#FF9A00" fillOpacity=".15" stroke="#FF9A00" strokeWidth="1.5" /><path d="M12 28 L20 10 L28 28" stroke="#FF9A00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /><line x1="14" y1="23" x2="26" y2="23" stroke="#FF9A00" strokeWidth="1.5" /></svg>
     },
-    { name: "Lightroom",     cat: "Photography",      color: "#4FBFFF", sub: "#93c5fd", level: 80,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#4FBFFF" fillOpacity=".15" stroke="#4FBFFF" strokeWidth="1.5"/><circle cx="20" cy="20" r="8" fill="none" stroke="#4FBFFF" strokeWidth="1.2"/><path d="M20 12 L20 20 L26 20" stroke="#4FBFFF" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    {
+      name: "Lightroom", cat: "Photography", color: "#4FBFFF", sub: "#93c5fd", level: 80,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><rect x="5" y="5" width="30" height="30" rx="6" fill="#4FBFFF" fillOpacity=".15" stroke="#4FBFFF" strokeWidth="1.5" /><circle cx="20" cy="20" r="8" fill="none" stroke="#4FBFFF" strokeWidth="1.2" /><path d="M20 12 L20 20 L26 20" stroke="#4FBFFF" strokeWidth="1.5" strokeLinecap="round" /></svg>
     },
-    { name: "Framer",        cat: "Prototyping",      color: "#0055FF", sub: "#60a5fa", level: 75,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><polygon points="8,8 32,8 32,22 20,22" fill="#0055FF" fillOpacity=".25" stroke="#0055FF" strokeWidth="1.5"/><polygon points="8,22 20,22 20,36" fill="#0055FF" fillOpacity=".4" stroke="#0055FF" strokeWidth="1.5"/></svg>
+    {
+      name: "Framer", cat: "Prototyping", color: "#0055FF", sub: "#60a5fa", level: 75,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><polygon points="8,8 32,8 32,22 20,22" fill="#0055FF" fillOpacity=".25" stroke="#0055FF" strokeWidth="1.5" /><polygon points="8,22 20,22 20,36" fill="#0055FF" fillOpacity=".4" stroke="#0055FF" strokeWidth="1.5" /></svg>
     },
-    { name: "Claude AI",     cat: "AI Assistant",     color: "#CC785C", sub: "#f6a07a", level: 90,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><circle cx="20" cy="20" r="13" fill="#CC785C" fillOpacity=".18" stroke="#CC785C" strokeWidth="1.5"/><path d="M13 16 Q13 12 20 12 Q27 12 27 16 Q27 20 20 20 L17 24 L17 20 Q13 20 13 16 Z" fill="#CC785C" fillOpacity=".35" stroke="#CC785C" strokeWidth="1.2" strokeLinejoin="round"/><circle cx="17" cy="16" r="1.2" fill="#CC785C" fillOpacity=".8"/><circle cx="20" cy="16" r="1.2" fill="#CC785C" fillOpacity=".8"/><circle cx="23" cy="16" r="1.2" fill="#CC785C" fillOpacity=".8"/></svg>
+    {
+      name: "Claude AI", cat: "AI Assistant", color: "#CC785C", sub: "#f6a07a", level: 90,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><circle cx="20" cy="20" r="13" fill="#CC785C" fillOpacity=".18" stroke="#CC785C" strokeWidth="1.5" /><path d="M13 16 Q13 12 20 12 Q27 12 27 16 Q27 20 20 20 L17 24 L17 20 Q13 20 13 16 Z" fill="#CC785C" fillOpacity=".35" stroke="#CC785C" strokeWidth="1.2" strokeLinejoin="round" /><circle cx="17" cy="16" r="1.2" fill="#CC785C" fillOpacity=".8" /><circle cx="20" cy="16" r="1.2" fill="#CC785C" fillOpacity=".8" /><circle cx="23" cy="16" r="1.2" fill="#CC785C" fillOpacity=".8" /></svg>
     },
-    { name: "HTML & CSS",    cat: "Development",      color: "#f95d13", sub: "#fb923c", level: 78,
-      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><path d="M8 6 L10 32 L20 35 L30 32 L32 6 Z" fill="#f95d13" fillOpacity=".15" stroke="#f95d13" strokeWidth="1.2"/><path d="M14 14 L26 14 L25 22 L20 24 L15 22 L14.5 18 L24 18" stroke="#f95d13" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    {
+      name: "HTML & CSS", cat: "Development", color: "#f95d13", sub: "#fb923c", level: 78,
+      icon: <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8"><path d="M8 6 L10 32 L20 35 L30 32 L32 6 Z" fill="#f95d13" fillOpacity=".15" stroke="#f95d13" strokeWidth="1.2" /><path d="M14 14 L26 14 L25 22 L20 24 L15 22 L14.5 18 L24 18" stroke="#f95d13" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
     },
   ];
 
@@ -1324,7 +1332,7 @@ const SoftwareStack = () => {
               <span className="w-8 h-[1px] bg-accent inline-block"></span>Software Stack
             </p>
             <h2 className="text-5xl md:text-7xl font-display uppercase tracking-tighter leading-none">
-              Tools I <span className="text-outline">Master</span><br/>
+              Tools I <span className="text-outline">Master</span><br />
               <span className="font-serif italic font-normal lowercase text-graytext text-4xl md:text-5xl">daily.</span>
             </h2>
           </div>
@@ -1421,7 +1429,7 @@ const Footer = () => {
   return (
     <footer id="contact" className="h-screen flex flex-col justify-between p-6 md:p-12 border-t border-white/10 relative overflow-hidden bg-black">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-accent/10 rounded-full blur-[150px] pointer-events-none"></div>
-      
+
       <div className="flex-1 flex flex-col items-center justify-center relative z-10 text-center">
         <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4 text-graytext">Let's connect</p>
         <a href="https://wa.me/918200448768" target="_blank" className="hover-target text-[10vw] md:text-[8vw] font-display font-bold uppercase tracking-tighter leading-none hover:text-accent transition-colors duration-500">
@@ -1432,12 +1440,12 @@ const Footer = () => {
 
       <div className="flex flex-col md:flex-row justify-between items-end w-full relative z-10 text-xs font-mono uppercase tracking-widest text-graytext gap-8">
         <div>
-           <p className="text-white mb-2">Taher Mangal Mahudi</p>
-           <p>UI/UX Product Designer</p>
+          <p className="text-white mb-2">Taher Mangal Mahudi</p>
+          <p>UI/UX Product Designer</p>
         </div>
         <div className="hidden md:block text-center">
-           <p>© {new Date().getFullYear()}</p>
-           <p>ALL RIGHTS RESERVED.</p>
+          <p>© {new Date().getFullYear()}</p>
+          <p>ALL RIGHTS RESERVED.</p>
         </div>
         <div className="flex gap-8">
           <a href="https://www.linkedin.com/in/taher-mangalmahudi-71bb8a390" target="_blank" className="hover:text-white transition-colors hover-target">LinkedIn</a>
@@ -1459,17 +1467,17 @@ const App = () => {
         <Navbar />
         <main>
           <Hero />
-          <ProjectGallery 
+          <ProjectGallery
             id="work"
             heading="Featured <br/> <span class='text-outline'>UI/UX</span>"
             subtitle="Case Studies"
             categoryNumber="01"
             projects={[
               { title: "Furni AR", category: "Augmented Reality UX", img: "./wall-mockup-dark-tones-green-600nw-2249639263 1 (1).png", link: "https://www.figma.com/proto/ZpesSephEfgsDCPD8dF8Wg/Untitled?node-id=1-2&starting-point-node-id=1%3A2&t=NcC83MD4aCd0tVJ1-1", bgColor: "#111111" },
-              { title: "MuscleX", category: "Next-Gen Fitness App", img: "./Frame 12.png", link: "../MacBook Pro 14_ - 1.pdf", bgColor: "#0d0d0d" }
+              { title: "MuscleX", category: "Next-Gen Fitness App", img: "./Frame 12.png", link: "./MacBook Pro 14_ - 1 (1).pdf", bgColor: "#0d0d0d" }
             ]}
           />
-          <ProjectGallery 
+          <ProjectGallery
             id="webdesign"
             heading="Web Design <br/> <span class='text-outline'>Showcase</span>"
             subtitle="Digital Identity"
